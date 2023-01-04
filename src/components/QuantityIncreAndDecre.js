@@ -1,6 +1,8 @@
 // Problem: You have a list of items with price and quantity..Create two buttons for each and every element in the data list.One will increment the quantity of the particular item, and one will decrement the quantity..Show all details of the items on the page.
 
-import { useState } from "react";
+// Problem: Extension of above question - show the total price at the end of the list which would be the sum of (price * quantity) for all items
+
+import { useState, useEffect } from "react";
 
 const QuantityIncreAndDecre = () => {
     const data = [
@@ -38,18 +40,23 @@ const QuantityIncreAndDecre = () => {
     ];
 
     const [products, setProducts] = useState(data)
+    const [totalPrice, setTotalPrice] = useState()
 
     const incrementHandler = (id) => {
         const updatedProducts = products.map((product) => product.id === id ? { ...product, quantity: product.quantity + 1 } : product)
-
         setProducts(updatedProducts)
 
     }
     const decrementHandler = (id) => {
         const updatedProducts = products.map((product) => product.id === id ? { ...product, quantity: product.quantity > 1 && product.quantity - 1 } : product)
-
         setProducts(updatedProducts)
     }
+
+    useEffect(() => {
+        const updatedTotalPrice = products.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
+        setTotalPrice(updatedTotalPrice)
+        console.log(updatedTotalPrice)
+    }, [products])
 
     return (
         <div>
@@ -57,7 +64,7 @@ const QuantityIncreAndDecre = () => {
                 {
                     products?.map((product) => (
                         <li key={product?.id}>
-                            {product?.item} ({product?.price})
+                            {product?.item} (${product?.price})
                             <button onClick={() => decrementHandler(product?.id)}> - </button>
                             {product?.quantity}
                             <button onClick={() => incrementHandler(product?.id)}>+</button>
@@ -65,6 +72,9 @@ const QuantityIncreAndDecre = () => {
                         </li>
                     ))
                 }
+                {totalPrice > 0 && <h1>
+                    Total : ${totalPrice}
+                </h1>}
             </ul>
         </div>
     )
