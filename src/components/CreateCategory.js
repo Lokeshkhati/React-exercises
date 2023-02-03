@@ -9,6 +9,7 @@ import { useState } from "react";
 // Then save the data and render the list category wise
 
 const CreateCategory = () => {
+
     const productsData = [
         {
             category: "Fruit",
@@ -17,27 +18,39 @@ const CreateCategory = () => {
         {
             category: "Vegetable",
             products: ["Ladyfinger", "Brinjal"]
+        },
+        {
+            category: "lokesh",
+            products: ["Ladyfinger", "Brinjal"]
         }
     ];
-    const [category, setCategory] = useState(["Fruit", "Vegetable", "lokesh"]);
-    const [products, setProducts] = useState(productsData);
 
+    const categories = productsData.map((product) => product.category)
+
+    const [data, setData] = useState(productsData);
+    const [category, setCategory] = useState(categories);
     const [categoryInput, setCategoryInput] = useState();
     const [productInput, setProductInput] = useState("");
     const [selectCategory, setSelectCategory] = useState("");
-
+    
     const addCategory = () => {
-        setCategory((prev) => prev.concat(categoryInput))
-        // setCategory((prev) => [...prev, categoryInput])
+
+        setData([...data, {
+            category: categoryInput,
+            products: []
+        }])
+
         setCategoryInput('')
-        console.log(category)
     }
     const addProduct = () => {
-        const updatedProducts = products.map((product) => product.category === selectCategory ? { ...product, products: [...product.products, productInput] } : product)
-
-        setProducts(updatedProducts)
+        const newData = [...data, {
+            category: selectCategory,
+            products: [productInput]
+        }]
+        setData(newData)
         setProductInput('')
     }
+
     return (
         <div>
             <h1>Add Data</h1>
@@ -59,10 +72,10 @@ const CreateCategory = () => {
             </div>
             <ul>
                 <h1>All Products</h1>
-                {products?.map((product) => (
-                    <li key={product.id}>
-                        <h3> {product.category} </h3>
-                        {product.products.map((item) => (
+                {data?.map((item) => (
+                    <li key={item.id}>
+                        <h3> {item.category} </h3>
+                        {item.products.map((item) => (
                             <p key={item}>{item} </p>
                         ))}
                     </li>
