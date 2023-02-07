@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 // Two buttons
 // start and stop
@@ -8,17 +8,44 @@ import { useRef, useState } from "react"
 
 const Counter = () => {
     const [count, setCount] = useState(0)
+    const [start, setStart] = useState(false)
     const timerIdRef = useRef(null)
 
-    const countStartHandler = () => {
-        timerIdRef.current =
-            setInterval(() => {
-                setCount(prevCount => prevCount + 1)
+    // one way of solving the problem using setInterval()
+    // const countStartHandler = () => {
+    //     timerIdRef.current =
+    //         setInterval(() => {
+    //             setCount(prevCount => prevCount + 1)
+    //         }, 1000)
+    // }
+
+    // const countStopHandler = () => {
+    //     clearInterval(timerIdRef.current)
+    // }
+
+
+    // other way of solving the same problem using setTimeout() and useEffect()
+
+    useEffect(() => {
+        if (start) {
+            timerIdRef.current = setTimeout(() => {
+                setCount(count + 1)
             }, 1000)
+        }
+        // return () => {
+        //     clearTimeout(timerIdRef.current)
+        // }
+
+    }, [count, start])
+
+    const countStartHandler = () => {
+        setStart(true)
+
     }
 
     const countStopHandler = () => {
-        clearInterval(timerIdRef.current)
+        clearTimeout(timerIdRef.current)
+        setStart(false)
     }
     return (
         <div>Counter :{count}
