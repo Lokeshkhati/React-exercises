@@ -55,7 +55,6 @@ const QuantityIncreAndDecre = () => {
     useEffect(() => {
         const updatedTotalPrice = products.reduce((acc, curr) => acc + curr.price * curr.quantity, 0)
         setTotalPrice(updatedTotalPrice)
-        console.log(updatedTotalPrice)
     }, [products])
 
     return (
