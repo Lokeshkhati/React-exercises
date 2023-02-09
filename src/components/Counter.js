@@ -1,10 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 
-// Two buttons
-// start and stop
-// on Start click increment a counter from 0 every 1 sec.
-// on Stop this counter should pause
-// on Start click again resume the counter
+ 
 
 const Counter = () => {
     const [count, setCount] = useState(0)
