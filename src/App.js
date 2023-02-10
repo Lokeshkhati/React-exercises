@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import AddNewObject from "./components/AddNewObject"
+import BrandFilter from "./components/BrandFilter"
+import Bubble from "./components/Bubble"
+import CountDownTimer from "./components/CountDownTimer"
+import Counter from "./components/Counter"
+import CreateCategory from "./components/CreateCategory"
+import PracticeOne from "./components/PracticeOne"
+import PriceFilter from "./components/PriceFilter"
+import QuantityIncreAndDecre from "./components/QuantityIncreAndDecre"
+import SubscriberList from "./components/SubscriberList"
+import TodoFilter from "./components/TodoFilter"
+import ToggleTodo from "./components/ToggleTodo"
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <BrandFilter /> */}
+      {/* <TodoFilter /> */}
+      {/* <PracticeOne /> */}
+      {/* <AddNewObject /> */}
+      {/* <ToggleTodo /> */}
+      {/* <SubscriberList /> */}
+      {/* <PriceFilter /> */}
+      {/* <QuantityIncreAndDecre /> */}
+      {/* <CreateCategory /> */}
+      {/* <Bubble /> */}
+      {/* <Counter /> */}
+      <CountDownTimer />
     </div>
-  );
+  )
 }
+export default App
 
-export default App;
