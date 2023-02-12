@@ -4,6 +4,7 @@ import Bubble from "./components/Bubble"
 import CountDownTimer from "./components/CountDownTimer"
 import Counter from "./components/Counter"
 import CreateCategory from "./components/CreateCategory"
+import Lists from "./components/Lists"
 import PracticeOne from "./components/PracticeOne"
 import PriceFilter from "./components/PriceFilter"
 import QuantityIncreAndDecre from "./components/QuantityIncreAndDecre"
@@ -25,8 +26,8 @@ const App = () => {
       {/* <CreateCategory /> */}
       {/* <Bubble /> */}
       {/* <Counter /> */}
-      <CountDownTimer />
-    </div>
+      {/* <CountDownTimer /> */}
+      <Lists />   </div>
   )
 }
 export default App
