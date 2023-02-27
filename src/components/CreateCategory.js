@@ -33,15 +33,11 @@ const CreateCategory = () => {
     const [productInput, setProductInput] = useState("");
     const [selectCategory, setSelectCategory] = useState("");
     
-    const addCategory = () => {
-
-        setData([...data, {
-            category: categoryInput,
-            products: []
-        }])
-
-        setCategoryInput('')
-    }
+    
+  const addCategory = () => {
+    setCategory([...category, categoryInput]);
+    setCategoryInput(" ");
+  };
     const addProduct = () => {
         const newData = [...data, {
             category: selectCategory,
@@ -72,15 +68,20 @@ const CreateCategory = () => {
             </div>
             <ul>
                 <h1>All Products</h1>
-                {data?.map((item) => (
-                    <li key={item.id}>
-                        <h3> {item.category} </h3>
-                        {item.products.map((item) => (
-                            <p key={item}>{item} </p>
-                        ))}
-                    </li>
-                ))
-                }
+                {category.map((categ) => (
+          <>
+            <h1>{categ} </h1>
+            {data
+              .filter((item) => item.category === categ)
+              .map((item) => (
+                <li key={item.id}>
+                  {item.products.map((item) => (
+                    <p key={item}>{item} </p>
+                  ))}
+                </li>
+              ))}
+          </>
+        ))}
             </ul>
         </div>
     )
